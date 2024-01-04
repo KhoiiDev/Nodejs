@@ -1,0 +1,265 @@
+<div class="row container" id="wrapper">
+   <div class="halim-panel-filter">
+      <div id="ajax-filter" class="panel-collapse collapse in" aria-expanded="true" role="menu" style="display: none;">
+         <div class="halim-search-filter">
+            <div class="btn-group col-md-12">
+               <form id="form-filter" class="form-inline" method="GET" action="/movie/filter">
+
+                  <div class="col-md-2 col-xs-12 col-sm-6">
+                     <div class="filter-box">
+                        <div class="filter-box-title">Định dạng</div>
+                        <select class="form-control" id="cate" name="cate">
+                           <option value="cate">Danh mục</option>
+                           {{#each category }}
+                           <option value="{{ this._id}}">
+                              {{ this.nameCategory }}
+                           </option>
+                           {{/each }}
+                        </select>
+                     </div>
+                  </div>
+
+                  <div class="col-md-2 col-xs-12 col-sm-6">
+                     <div class="filter-box">
+                        <div class="filter-box-title">Quốc gia</div>
+                        <select class="form-control" name="coun">
+                           <option value="coun">Quốc gia</option>
+                           {{#each country }}
+                           <option value="{{ this._id}}">
+                              {{ this.nameCountry }}
+                           </option>
+                           {{/each }}
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-1 col-xs-12 col-sm-6">
+                     <div class="filter-box">
+                        <div class="filter-box-title">Năm</div>
+                        <select class="form-control" name="year">
+                           <option value="year">Năm</option>
+
+
+
+                           <option value="2000">2000</option>
+
+                           <option value="2001">2001</option>
+
+                           <option value="2002">2002</option>
+
+                           <option value="2003">2003</option>
+
+                           <option value="2004">2004</option>
+
+
+
+                           <option value="2005">2005</option>
+
+                           <option value="2006">2006</option>
+
+                           <option value="2007">2007</option>
+
+                           <option value="2008">2008</option>
+
+                           <option value="2009">2009</option>
+
+                           <option value="2010">2010</option>
+
+                           <option value="2011">2011</option>
+
+                           <option value="2012">2012</option>
+
+                           <option value="2013">2013</option>
+
+                           <option value="2014">2014</option>
+
+                           <option value="2015">2015</option>
+
+                           <option value="2016">2016</option>
+
+                           <option value="2017">2017</option>
+
+
+                           <option value="2018">2018</option>
+                           <option value="2019">2019</option>
+
+                           <option value="2020">2020</option>
+
+                           <option value="2021">2021</option>
+
+                           <option value="2022">2022</option>
+
+                           <option value="2023">2023</option>
+
+
+
+                        </select>
+                     </div>
+                  </div>
+
+                  <div class="col-md-3 col-xs-12 col-sm-6">
+                     <div class="filter-box">
+                        <div class="filter-box-title">Thể loại</div>
+                        <select class="form-control" id="gen" name="gen">
+                           <option value="gen">Thể loại</option>
+                           {{#each genre }}
+                           <option value="{{ this._id }}">{{this.nameGenre}}</option>
+                           {{/each }}
+
+                        </select>
+                     </div>
+                  </div>
+
+                  <div class="col-md-2 col-xs-12 col-sm-6">
+                     <button type="submit" id="btn-movie-filter" class="btn btn-danger">Lọc phim</button>
+                  </div>
+               </form>
+            </div>
+         </div><!-- end panel-body -->
+      </div>
+      <div class="panel-heading">
+         <div class="row">
+            <div class="col-xs-6">
+               <div class="yoast_breadcrumb hidden-xs"><span><span><a href="/movie">PHIM MỚI.NET</a>
+
+                        »
+                        <span class="breadcrumb_last" aria-current="page"><a
+                              href="/movie/watch/{{ episodeFilm.film.slug }}">{{episodeFilm.film.nameFilm}}</a></span>
+                        »
+                        <span class="breadcrumb_last" aria-current="page">Tập
+                           {{episodeFilm.episode}}</span></span></span>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </div>
+   <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
+      <section id="content" class="test">
+         <div class="clearfix wrap-content">
+
+            <iframe width="100%" height="500" src="{{ episodeFilm.linkPhim }}" title="YouTube video player"
+               frameborder="0"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+               allowfullscreen></iframe>
+
+
+            <div class="clearfix"></div>
+            <div class="title-block">
+
+               <div class="title-wrapper-xem full">
+                  <h3 class="entry-title"><a href="{{ episodeFilm.film.slug }}" title="{{ episodeFilm.film.nameFilm }}"
+                        class="tl">{{episodeFilm.nameEpisode}} </a></h3>
+               </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div id="halim-list-server">
+
+               <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active server-1" id="server-0">
+                     <div class="halim-server">
+                        <ul class="halim-list-eps">
+                           {{#each episode }}
+                           <a href="/movie/episode/{{ this.slug }}">
+                              <li class="halim-episode"><span class="halim-btn halim-btn-2  halim-info-1-1 box-shadow"
+                                    data-post-id="37976" data-server="{{ this.episode }}"
+                                    data-episode="{{ this.episode }}" data-position="first" data-embed="0"
+                                    data-title="{{ this.film.nameFilm }} - Tập {{ this.episode }} - {{ this.film.nameEng }} - {{ this.subtitle }}"
+                                    data-h1="{{ this.slug }}">{{this.episode}}</span></li>
+                           </a>
+                           {{/each }}
+
+
+                        </ul>
+                        <div class="clearfix"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+
+      </section>
+      <section class="related-movies">
+         <div id="halim_related_movies-2xx" class="wrap-slider">
+            <div class="section-bar clearfix">
+               <h3 class="section-title"><span>CÓ THỂ BẠN MUỐN XEM</span></h3>
+            </div>
+            <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
+               {{#each related }}
+               <article class="thumb grid-item post-38498">
+                  <div class="halim-item">
+                     <a class="halim-thumb" href="/movie/detail/{{ this.slug }}" title="{{ this.nameFilm }}">
+                        <figure><img class="lazy img-responsive" src=" /images/{{ this.image }}"
+                              alt="{{ this.nameFilm }}" title="{{ this.nameFilm }}" /></figure>
+                        <span class="status">{{ this.resolutions }}</span><span class="episode"><i class="fa fa-play"
+                              aria-hidden="true"></i>{{#if this.season}}
+                           Season {{ this.season }}
+                           {{else }}
+                           {{ this.subtitle }}
+                           {{/if}}</span>
+                        <div class="icon_overlay"></div>
+                        <div class="halim-post-title-box">
+                           <div class="halim-post-title">
+                              <p class="entry-title">{{ this.nameFilm }}</p>
+                              <p class="original_title">{{ this.nameEng }}</p>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+               </article>
+               {{/each }}
+
+            </div>
+            <script>
+               jQuery(document).ready(function ($) {
+                  var owl = $('#halim_related_movies-2');
+                  owl.owlCarousel({ loop: true, margin: 4, autoplay: true, autoplayTimeout: 4000, autoplayHoverPause: true, nav: true, navText: ['<i class=" rotate-left fa fa-angle-left"></i>', '<i class=" rotate-right fa fa-angle-right"></i>'], responsiveClass: true, responsive: { 0: { items: 2 }, 480: { items: 3 }, 600: { items: 4 }, 1000: { items: 4 } } })
+               });
+            </script>
+         </div>
+      </section>
+   </main>
+   <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
+      <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
+         <div class="section-bar clearfix">
+            <div class="section-title">
+               <span>Phim chiếu rạp</span>
+
+            </div>
+         </div>
+         <section class="tab-content">
+            <div role="tabpanel" class="tab-pane active halim-ajax-popular-post">
+               <div class="halim-ajax-popular-post-loading hidden"></div>
+               <div id="halim-ajax-popular-post" class="popular-post">
+                  {{#each phimChieuRap }}
+                  {{#each this.film }}
+                  <div class="item ">
+                     <a href="/movie/detail/{{ this.slug }}" title="{{ this.nameFilm }}">
+                        <div class="item-link">
+                           <img src="/images/{{ this.image }}" class="lazy post-thumb" alt="{{ this.nameFilm }}"
+                              title="{{ this.nameFilm }}" />
+                           <span class="is_trailer">{{this.resolutions}}</span>
+                        </div>
+                        <p class="title">{{this.nameFilm}}</p>
+                     </a>
+                     <div class="viewsCount" style="color: #9d9d9d;">{{this.viewCounts}} lượt xem</div>
+                     <div style="float: left;">
+                        <span class="user-rate-image post-large-rate stars-large-vang"
+                           style="display: block;/* width: 100%; */">
+                           <span style="width: 0%"></span>
+                        </span>
+                     </div>
+                  </div>
+                  {{/each }}
+                  {{/each }}
+
+
+               </div>
+            </div>
+      </div>
+      </section>
+      <div class="clearfix"></div>
+
+   </aside>
+</div>

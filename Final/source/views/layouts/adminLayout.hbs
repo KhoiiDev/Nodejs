@@ -1,0 +1,174 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin</title>
+  <!-- BOOTSTRAP STYLES-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+  <!-- GOOGLE FONTS-->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+  <!-- JQUERY SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <!-- FONTAWESOME STYLES-->
+  <link href="../../js/assets/css/font-awesome.css" rel="stylesheet" />
+  <!-- MORRIS CHART STYLES-->
+  <link href="../../js/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+  <!-- CUSTOM STYLES-->
+  <link href="../../js/assets/css/custom.css" rel="stylesheet" />
+  <!-- TABLE STYLES-->
+  <link href="../../js/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+
+  {{! Flash message }}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+
+  {{! ckeditor5 }}
+
+</head>
+
+<body>
+
+  {{{toastr}}}
+  <div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top" role="navigation" style="margin-bottom: 0">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand bg-primary" href="/admin">Admin</a>
+
+      </div>
+      <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;">
+        <a href="/logout" class="btn btn-danger square-btn-adjust">Logout</a>
+
+      </div>
+
+    </nav>
+
+
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+      <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+          <li>
+            <a id="Film" href="/admin"><i class="fa fa-film fa-3x"></i>Quản lý phim</a>
+          </li>
+          <li>
+            <a id="Genre" href="/admin/Genre"><i class="fa fa-star fa-3x"></i>Quản lý thể loại
+            </a>
+          </li>
+
+          <li>
+            <a id="User" href="/admin/user"><i class="fa fa-user fa-3x"></i>Quản lý user</a>
+          </li>
+          <li>
+            <a id="Comment" href="/admin/comment"><i class="fa fa-comment fa-3x"></i>Quản lý bình luận</a>
+          </li>
+
+          <li>
+            <a id="Country" href="/admin/country"><i class="fa fa-globe fa-3x"></i>Quản lý quốc gia</a>
+          </li>
+
+          <li>
+            <a id="category" href="/admin/category"><i class="fa fa-list-alt fa-3x"></i>Quản lý danh mục</a>
+          </li>
+
+          <li>
+            <a id="episode" href="/admin/episode"><i class="fa fa-moon-o fa-3x"></i>Quản lý tập phim</a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+
+      {{{body}}}
+      <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+  </div>
+  <!-- /. WRAPPER  -->
+  <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+
+  <!-- BOOTSTRAP SCRIPTS -->
+  {{!
+  <script src=" ../js/assets/js/bootstrap.min.js"></script> }}
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <!-- METISMENU SCRIPTS -->
+  <script src="../../js/assets/js/jquery.metisMenu.js"></script>
+  <script src="../../js/assets/js/dataTables/jquery.dataTables.js"></script>
+  <script src="../../js/assets/js/dataTables/dataTables.bootstrap.js"></script>
+  <script>
+    $(document).ready(function () { $('#dataTables-example').dataTable(); });
+  </script>
+
+  <!-- SLUG -->
+  <script>
+
+    function ChangeToSlug() {
+      var slug;
+
+
+      slug = document.getElementById("slug").value;
+      slug = slug.toLowerCase();
+
+      slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+      slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+      slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+      slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+      slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+      slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+      slug = slug.replace(/đ/gi, 'd');
+
+      slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+      slug = slug.replace(/ /gi, "-");
+
+      slug = slug.replace(/\-\-\-\-\-/gi, '-');
+      slug = slug.replace(/\-\-\-\-/gi, '-');
+      slug = slug.replace(/\-\-\-/gi, '-');
+      slug = slug.replace(/\-\-/gi, '-');
+
+      slug = '@' + slug + '@';
+      slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+
+      document.getElementById('convert_slug').value = slug;
+    }
+
+    $(document).ready(function () {
+      $('form').submit(function (e) {
+        var empty = false;
+        $('input[type="text"], textarea').each(function () {
+          if ($(this).val() == '') {
+            empty = true; $(this).addClass('error');
+          } else { $(this).removeClass('error'); }
+        });
+        // Kiểm tra input file
+        var fileInput = $('input[type="file"]');
+        if (fileInput.length > 0 && fileInput[0].files.length === 0) {
+          empty = true;
+          fileInput.addClass('error');
+        } else {
+          fileInput.removeClass('error');
+        }
+        if (empty) {
+          e.preventDefault(); $('.error-message').html('Vui lòng điền đầy đủ thông tin').show();
+        }
+        else {
+          $('.error-message').hide();
+        }
+      });
+    });
+
+  </script>
+  <!-- CUSTOM SCRIPTS -->
+  <script src="../../js/assets/js/custom.js"></script>
+
+</body>
+
+</html>

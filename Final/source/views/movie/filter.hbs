@@ -1,0 +1,375 @@
+<div class="row container" id="wrapper">
+  <div class="halim-panel-filter">
+    <div id="ajax-filter" class="panel-collapse collapse in" aria-expanded="true" role="menu" style="display: none;">
+      <div class="halim-search-filter">
+        <div class="btn-group col-md-12">
+          <form id="form-filter" class="form-inline" method="GET" action="/movie/filter">
+
+            <div class="col-md-2 col-xs-12 col-sm-6">
+              <div class="filter-box">
+                <div class="filter-box-title">Định dạng</div>
+                <select class="form-control" id="cate" name="cate">
+                  <option value="cate">Danh mục</option>
+                  {{#each category }}
+                  <option value="{{ this._id}}">
+                    {{ this.nameCategory }}
+                  </option>
+                  {{/each }}
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2 col-xs-12 col-sm-6">
+              <div class="filter-box">
+                <div class="filter-box-title">Quốc gia</div>
+                <select class="form-control" name="coun">
+                  <option value="coun">Quốc gia</option>
+                  {{#each country }}
+                  <option value="{{ this._id}}">
+                    {{ this.nameCountry }}
+                  </option>
+                  {{/each }}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-1 col-xs-12 col-sm-6">
+              <div class="filter-box">
+                <div class="filter-box-title">Năm</div>
+                <select class="form-control" name="year">
+                  <option value="year">Năm</option>
+
+
+
+                  <option value="2000">2000</option>
+
+                  <option value="2001">2001</option>
+
+                  <option value="2002">2002</option>
+
+                  <option value="2003">2003</option>
+
+                  <option value="2004">2004</option>
+
+
+
+                  <option value="2005">2005</option>
+
+                  <option value="2006">2006</option>
+
+                  <option value="2007">2007</option>
+
+                  <option value="2008">2008</option>
+
+                  <option value="2009">2009</option>
+
+                  <option value="2010">2010</option>
+
+                  <option value="2011">2011</option>
+
+                  <option value="2012">2012</option>
+
+                  <option value="2013">2013</option>
+
+                  <option value="2014">2014</option>
+
+                  <option value="2015">2015</option>
+
+                  <option value="2016">2016</option>
+
+                  <option value="2017">2017</option>
+
+
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+
+                  <option value="2020">2020</option>
+
+                  <option value="2021">2021</option>
+
+                  <option value="2022">2022</option>
+
+                  <option value="2023">2023</option>
+
+
+
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-xs-12 col-sm-6">
+              <div class="filter-box">
+                <div class="filter-box-title">Thể loại</div>
+                <select class="form-control" id="gen" name="gen">
+                  <option value="gen">Thể loại</option>
+                  {{#each genre }}
+                  <option value="{{ this._id }}">{{this.nameGenre}}</option>
+                  {{/each }}
+
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2 col-xs-12 col-sm-6">
+              <button type="submit" id="btn-movie-filter" class="btn btn-danger">Lọc phim</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- end panel-body -->
+    </div>
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="yoast_breadcrumb hidden-xs"><span><span><a href="/movie">PHIM MỚI.NET</a>
+                »
+                <span class="breadcrumb_last" aria-current="page">Filter Movies</span></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
+    <section>
+      <div class="section-bar clearfix">
+        <h1 class="section-title"><span>Danh sách phim</span></h1>
+      </div>
+      <div class="halim_box">
+        {{#each film}}
+        <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
+          <div class="halim-item">
+            <a class="halim-thumb" href="/movie/detail/{{this.slug}}" title="{{ this.nameFilm }}">
+              <figure><img class="lazy img-responsive" src="/images/{{this.image}}" alt="{{this.nameFilm}}"
+                  title="{{this.nameFilm}}" /></figure>
+              <span class="status">{{this.resolutions}}</span><span class="episode"><i class="fa fa-play"
+                  aria-hidden="true"></i>
+                {{#if this.season}}
+                Season{{ this.season }}
+                {{else }}
+                {{ this.subtitle }}
+                {{/if}}</span>
+              <div class="icon_overlay"></div>
+              <div class="halim-post-title-box">
+                <div class="halim-post-title">
+                  <p class="entry-title">{{this.nameFilm}}</p>
+                  <p class="original_title">{{this.nameEng}}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </article>
+        {{/each }}
+
+
+      </div>
+      <div class="clearfix"></div>
+      <div class="text-center">
+        <ul class="pagination justify-content-center pagination-sm">
+        </ul>
+      </div>
+    </section>
+  </main>
+  <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
+    <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
+      <div class="section-bar clearfix">
+        <div class="section-title">
+          <span>Phim chiếu rạp</span>
+
+        </div>
+      </div>
+      <section class="tab-content">
+        <div role="tabpanel" class="tab-pane active halim-ajax-popular-post">
+          <div class="halim-ajax-popular-post-loading hidden"></div>
+          <div id="halim-ajax-popular-post" class="popular-post">
+            {{#each phimChieuRap }}
+            {{#each this.film }}
+            <div class="item ">
+              <a href="/movie/detail/{{ this.slug }}" title="{{ this.nameFilm }}">
+                <div class="item-link">
+                  <img src="/images/{{ this.image }}" class="lazy post-thumb" alt="{{ this.nameFilm }}"
+                    title="{{ this.nameFilm }}" />
+                  <span class="is_trailer">{{this.resolutions}}</span>
+                </div>
+                <p class="title">{{this.nameFilm}}</p>
+              </a>
+              <div class="viewsCount" style="color: #9d9d9d;">{{this.viewCounts}} lượt xem</div>
+              <div style="float: left;">
+                <span class="user-rate-image post-large-rate stars-large-vang"
+                  style="display: block;/* width: 100%; */">
+                  <span style="width: 0%"></span>
+                </span>
+              </div>
+            </div>
+            {{/each }}
+            {{/each }}
+
+
+          </div>
+        </div>
+    </div>
+    </section>
+    <div class="clearfix"></div>
+
+  </aside>
+</div>
+
+<input type="hidden" id="totalFilm" name="" value="{{totalFilm}}">
+<input type="hidden" id="slugFilm" name="" value="{{url}}">
+<input type="hidden" id="page" name="" value="{{page}}">
+<input type="hidden" id="filmPerPage" name="" value="{{filmPerPage}}">
+<script>
+  // Returns an array of maxLength (or less) page numbers
+  // where a 0 in the returned array denotes a gap in the series.
+  // Parameters:
+  //   totalPages:     total number of pages
+  //   page:           current page
+  //   maxLength:      maximum size of returned array
+
+
+  function getPageList(totalPages, page, maxLength) {
+    if (maxLength < 5) throw "maxLength must be at least 5";
+
+    function range(start, end) {
+      return Array.from(Array(end - start + 1), (_, i) => i + start);
+    }
+
+    var sideWidth = maxLength < $("#totalFilm").val() ? 1 : 2;
+    var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+    var rightWidth = (maxLength - sideWidth * 2 - 2) >> 1;
+    if (totalPages <= maxLength) {
+      // no breaks in list
+      return range(1, totalPages);
+    }
+    if (page <= maxLength - sideWidth - 1 - rightWidth) {
+      // no break on left of page
+      return range(1, maxLength - sideWidth - 1)
+        .concat([0])
+        .concat(range(totalPages - sideWidth + 1, totalPages));
+    }
+    if (page >= totalPages - sideWidth - 1 - rightWidth) {
+      // no break on right of page
+      return range(1, sideWidth)
+        .concat([0])
+        .concat(
+          range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages)
+        );
+    }
+    // Breaks on both sides
+    return range(1, sideWidth)
+      .concat([0])
+      .concat(range(page - leftWidth, page + rightWidth))
+      .concat([0])
+      .concat(range(totalPages - sideWidth + 1, totalPages));
+  }
+
+
+
+  // Number of items and limits the number of items per pag
+  var numberOfItems = Number($("#totalFilm").val()) + 1;
+
+  var limitPerPage = $("#filmPerPage").val();
+
+  // Total pages rounded upwards
+  var totalPages = Math.ceil(numberOfItems / limitPerPage);
+
+  // Number of buttons at the top, not counting prev/next,
+  // but including the dotted buttons.
+  // Must be at least 5:
+  var paginationSize = 7;
+  var currentPage;
+
+  if ($("#page").val() === "") {
+    currentPage = 1;
+  } else {
+    currentPage = $("#page").val()
+  }
+
+
+  function showPage(whichPage) {
+    if (whichPage < 1 || whichPage > totalPages) return false;
+    currentPage = whichPage;
+
+
+    // Replace the navigation items(not prev / next):
+    $(".pagination li").slice(1, -1).remove();
+    getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+
+      $("<li>")
+        .addClass("page-item " + (item ? "current-page " : "") + (item === currentPage ? "active" : ""))
+        .append(
+          $("<a>")
+            .addClass("page-link")
+            .attr({
+              href: "?page=" + item
+            })
+            .text(item || "...")
+        )
+        .insertBefore("#next-page");
+
+
+    });
+
+    return true;
+  }
+
+  const prev = Number(currentPage) - 1;
+
+  const next = Number(currentPage) + 1;
+  $(".pagination").append(
+
+
+    $("<li>").addClass("page-item").attr({
+      id: "previous-page"
+    }).append(
+      $("<a>")
+        .addClass("page-link")
+        .attr({
+          href: "?page=" + prev
+        })
+        .text("Prev")
+    ),
+    $("<li>").addClass("page-item").attr({
+      id: "next-page"
+    }).append(
+      $("<a>")
+        .addClass("page-link")
+        .attr({
+          href: "?page=" + next
+        })
+        .text("Next")
+    )
+  );
+
+
+  // Include the prev/next buttons:
+  // Show the page links
+
+
+  if (currentPage > 1) {
+    showPage(Number(currentPage));
+  } else {
+    showPage(1);
+  }
+
+
+  // Use event delegation, as these items are recreated later
+  $(document).on("click", ".pagination li.current-page:not(.active)", function (event) {
+
+    return showPage($(this).text());
+
+  });
+  $("#next-page").on("click", function () {
+
+    return showPage(currentPage);
+  });
+
+  $("#previous-page").on("click", function () {
+    return showPage(currentPage);
+  });
+  $(".pagination").on("click", function () {
+    $("html,body").animate({
+      scrollTop: 0
+    }, 0);
+  });
+
+
+</script>

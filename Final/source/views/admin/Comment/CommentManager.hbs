@@ -1,0 +1,95 @@
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>User information management table</h2>
+            <h5>Welcome Jhon Deo , Love to see you back. </h5>
+
+        </div>
+    </div>
+    <!-- /. ROW  -->
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Advanced Tables
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Film</th>
+                                    <th>Content</th>
+                                    <th>createdAt</th>
+                                    <th>Feature</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each newData}}
+                                <tr>
+                                    <td>{{this.Name}}</td>
+                                    <td>{{this.Email}}</td>
+                                    <td>{{this.film}}</td>
+                                    <td>{{this.Content}}</td>
+                                    <td>{{this.createdAt}}</td>
+                                    <td>
+                                        <a type="button" class="icon-box bg-danger set-icon btn btn-default"
+                                            data-id="{{this._id}}" data-toggle="modal" data-target="#deleteUserModal">
+                                            <i class="fa fa-trash-o fa-1x"></i>
+                                        </a>
+                                    </td>
+                                    {{!-- <td>{{this.username}}</td> --}}
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</div>
+
+{{! Conform delete }}
+<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" id="btn-delete-user" class="btn btn-danger">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form name="formDel" method="POST" id="deleteForm"></form>
+
+<script>
+    $('#Comment').addClass('active-menu');
+
+    var id; var deleteForm = document.forms['formDel']; var btnDeleteUser =
+        $('#btn-delete-user'); console.log(id)
+    $('#deleteUserModal').on('show.bs.modal', function (event) {
+        var button =
+            $(event.relatedTarget); id = button.data('id');
+    });
+    btnDeleteUser.click(function () { ////sử ở đây thành đường dẫn
+        deleteForm.action = `/admin/deleteComment/` + id; deleteForm.submit();
+    });
+</script>

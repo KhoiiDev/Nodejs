@@ -1,0 +1,23 @@
+<div class="panel-body">
+    <div class="row">
+        <button class="btn btn-success" onclick="window.location.href='/admin/Genre'">Back</button>
+        <div class="col-md-12 ">
+            <h3 class="text-center text-primary h1">Thêm thể loại</h3>
+            <form role="form" action="/admin/addGenre" method="post">
+                <div class="form-group {{#if errors}}has-error{{/if}}">
+                    <label for="nameGenre">Tên thể loại</label>
+                    <input class="form-control" name="nameGenre" id="slug" onkeyup="ChangeToSlug()" />
+                    <label for="slug">Slug:</label>
+                    <input class="form-control" name="slug" value="{{data.slug}}" id="convert_slug" />
+                    {{#each errors}}
+                    <span class="control-label" style="color: red;">{{this.message}}</span>
+                    {{/each}}
+                </div>
+                <button type="submit" class="btn btn-primary">Thêm thể loại</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+  $('#Genre').addClass('active-menu');
+</script>

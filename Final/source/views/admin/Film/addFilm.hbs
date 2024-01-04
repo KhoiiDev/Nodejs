@@ -1,0 +1,164 @@
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+
+
+<div class="panel-body">
+    <div class="row">
+        <button class="btn btn-success" onclick="window.location.href='/admin' ">Back</button>
+        <div class="col-md-12 ">
+            <h3 class="text-center text-primary h1">Thêm phim mới</h3>
+            <form role="form" action="/admin/addFilm" method="post" enctype="multipart/form-data">
+                <div class="form-group ">
+                    <label for="nameFilm">Tên phim</label>
+                    <input class="form-control" name="nameFilm" id="slug" onkeyup="ChangeToSlug()" />
+
+                </div>
+                <div class="form-group ">
+                    <label for="slug">Slug:</label>
+                    <input class="form-control" name="slug" id="convert_slug" />
+                </div>
+                <div class="form-group ">
+                    <label for="nameEng">Tên tiếng anh</label>
+                    <input class="form-control" name="nameEng" id="nameEng" />
+
+                </div>
+                <div class="form-group ">
+                    <label for="genre">Thể loại:</label>
+                    {{#each genre}}
+                    <input type="checkbox" id="{{this._id}}" name="genre" value="{{this._id}}" />
+                    <label for="{{this._id}}">{{this.nameGenre}}</label>
+                    {{/each }}
+                </div>
+                <div class="form-group ">
+                    <label for="country">Quốc gia</label>
+                    <select class="form-control" name="country" id="country">
+                        {{#each country}}
+                        <option value="{{this._id}}">{{this.nameCountry}}</option>
+                        {{/each }}
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label for="category">Danh mục:</label>
+                    {{#each category }}
+                    <input type="checkbox" id="{{this._id}}" name="category" value="{{this._id}}" />
+                    <label for="{{this._id}}">{{this.nameCategory}}</label>
+                    {{/each }}
+                </div>
+                <div class="form-group ">
+                    <!-- Create the editor container -->
+                    <label for="describe">Mô tả</label>
+                    <textarea class="form-control" name="describe" id="describe" rows="8"></textarea>
+                </div>
+                <div class="form-group ">
+                    <label for="director">Đạo diễn</label>
+                    <input class="form-control" name="director" id="director" />
+
+                </div>
+                <div class="form-group ">
+                    <label for="actor">Diễn viên</label>
+                    <input class="form-control" name="actor" id="actor" />
+
+                </div>
+                <div class="form-group ">
+                    <label for="YearFilm">Năm sản xuất</label>
+                    <input class="form-control" name="YearFilm" id="YearFilm" />
+
+                </div>
+                <div class="form-group ">
+                    <label for="duration">Thời lượng</label>
+                    <input class="form-control" name="duration" id="duration" />
+
+                </div>
+                <div class="form-group ">
+                    <label for="image">Image</label>
+                    <input type="file" name="image" id="image">
+                </div>
+                <div class="form-group ">
+                    <label for="resolutions">Chất lượng phim</label>
+                    <input class="form-control" name="resolutions" id="resolutions" />
+
+                </div>
+                <div class="form-group ">
+                    <label for="subtitle">Phụ đề</label>
+
+                    <select class="form-control" name="subtitle" id="subtitle">
+
+                        <option value="Phụ đề">Phụ đề</option>
+                        <option value="Thuyết minh">Thuyết minh</option>
+
+                    </select>
+
+                </div>
+                <div class="form-group ">
+                    <label for="trailer">Trailer</label>
+                    <input class="form-control" name="trailer" id="trailer" />
+
+                </div>
+                <div class="form-group ">
+                    <label for="season">Season</label>
+                    <input class="form-control" name="season" id="season" />
+
+
+                </div>
+                <div class="form-group ">
+                    <label for="episode">Tập phim</label>
+
+                    <select class="form-control" name="episode" id="episode">
+                        <option value="">Tình trạng tập</option>
+                        <option value="Đang cập nhập">Đang cập nhập</option>
+                        <option value="Full">Full</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group ">
+                    <label for="resolutions">Link Phim</label>
+                    <input class="form-control" name="linkPhim" id="linkPhim" />
+
+                </div>
+                {{#each errors}}
+                <span class="control-label" style="color: red;" id="errorForm">{{this.message}}</span>
+                {{/each}}
+                <p class="error-message" style="color: red; display: none;"></p>
+                <button type="submit" class="btn btn-primary">Thêm phim mới</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('#Film').addClass('active-menu');
+
+    $(document).ready(function () {
+        $('form').submit(function (e) {
+            var empty = false;
+            $('input[type="text"]:not([name="season"]), textarea').each(function () {
+                if ($(this).val() == '') {
+                    empty = true;
+                    $(this).addClass('error');
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+            // Kiểm tra input file
+            var emptyFile = false;
+            $('input[type="file"]').each(function () {
+                if ($(this).val() == '') {
+                    emptyFile = true;
+                    $(this).addClass('error');
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+            if (empty || emptyFile) {
+                e.preventDefault();
+                $('.error-message').html('Vui lòng điền đầy đủ thông tin').show();
+            } else {
+                $('.error-message').hide();
+            }
+        });
+    });
+
+</script>
